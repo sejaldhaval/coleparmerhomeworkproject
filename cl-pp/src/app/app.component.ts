@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   public s1arr: any;
   public s2arr: any;
   public reportarray: any;
+  public calTimestamp: number = 0;
 
   ngOnInit() {
     this.items = data;
@@ -226,6 +227,7 @@ export class AppComponent implements OnInit {
     this.reportarray = calarr;
     console.log(calarr);
     this.setChart(charttime, chartdata, chartuploadDataTime, chartuploadData);
+    this.calTimestamp = calculateTimestamp;
   }
   sortdata(property: string) {
     this.s1arr.sort((a, b) => b[property].toLowerCase() !== a[property].toLowerCase() ? b[property].toLowerCase() < a[property].toLowerCase() ? -1 : 1 : 0);
@@ -310,21 +312,3 @@ export class AppComponent implements OnInit {
   }
 }
 
-
-//if (index == 0) {
-//  if (event.channel == "sensor1") {
-//    sensor1eventTimeStampCal = event.timestamp;
-//  }
-//  if (event.channel == "sensor2") {
-//    sensor2eventTimeStampCal = event.timestamp;
-//  }
-//}
-//else {
-//  if (event.channel == "sensor1") {
-//    sensor1eventTimeStampCal = new Date(sensor1eventTimeStampCal).valueOf() - new Date(event.timestamp).valueOf();
-//  }
-//  if (event.channel == "sensor2") {
-//    sensor2eventTimeStampCal = new Date(sensor1eventTimeStampCal).getTime() - new Date(event.timestamp).getTime();
-//    console.log(sensor2eventTimeStampCal / 1000);
-//  }
-//}
