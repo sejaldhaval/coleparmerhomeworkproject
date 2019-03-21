@@ -1,0 +1,7 @@
+.nav-link  {
+  border-top: 3px solid transparent;
+}
+
+.nav-link .active {
+  border-top: 3px solid green;
+}

@@ -1,0 +1,93 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><img src="../assets/images/cp-logo-email.png" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <b>Device Name:</b> {{items.name}} , <b>Device Serial Number:</b> {{items.serialNumber}}, <b>Start Time:</b>  {{items.startTime}}, <b>End Time:</b>  {{items.endTime}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Alarm Out Report</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Events and Data Log</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h4 class="p-3 m-2 text-center border bg-light">Alarm Out Report</h4>
+          <canvas id="myChart" width="400" height="85"></canvas>
+            <table class="table table-sm table-hover table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>CHANNEL</th>
+                  <th>DATA</th>
+                  <th>ALARM OUT TIME</th>
+                  <th>DATA TYPE</th>
+                  <th>EVENT TYPE</th>
+                  <th>TIME STAMP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of reportarray">
+                  <td>{{item.channel}}</td>
+                  <td>{{item.data}}</td>
+                  <td>{{item.alarmouttime}}</td>
+                  <td>{{item.dataType}}</td>
+                  <td>{{item.eventType}}</td>
+                  <td>{{item.timestamp}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <h4 class="p-3 m-2 text-center border bg-light">Events and Data Log</h4>
+          <canvas id="myChart2" width="400" height="85"></canvas>
+          <table class="table table-sm table-hover table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>DATA TYPE</th>
+                <th>CHANNEL</th>
+                <th>EVENT TYPE</th>
+                <th>TIME</th>
+                <th>DATA</th>
+                <th>MIN</th>
+                <th>MAX</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of s1arr" [ngClass]="{ 'bg-warning' : item.data < item.min || item.data > item.max }">
+                <td>{{item.dataType}}</td>
+                <td>{{item.channel}}</td>
+                <td>{{item.eventType}}</td>
+                <td>{{item.timestamp}}</td>
+                <td>{{item.data}}</td>
+                <td>{{item.min}}</td>
+                <td>{{item.max}}</td>
+              </tr>
+              <tr *ngFor="let item of s2arr" [ngClass]="{ 'bg-warning' : item.data < item.min || item.data > item.max }">
+                <td>{{item.dataType}}</td>
+                <td>{{item.channel}}</td>
+                <td>{{item.eventType}}</td>
+                <td>{{item.timestamp}}</td>
+                <td>{{item.data}}</td>
+                <td>{{item.min}}</td>
+                <td>{{item.max}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
